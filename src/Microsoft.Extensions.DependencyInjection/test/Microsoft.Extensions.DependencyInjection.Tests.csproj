@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>$(StandardTestTfms)</TargetFrameworks>
@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DI\DI.csproj" />
-    <ProjectReference Include="..\..\src\DI.Specification.Tests\DI.Specification.Tests.csproj" />
+    <ProjectReference Include="..\src\Microsoft.Extensions.DependencyInjection.csproj" />
+    <!-- <ProjectReference Include="..\..\src\DI.Specification.Tests\DI.Specification.Tests.csproj" /> -->
   </ItemGroup>
 
   <ItemGroup>
@@ -20,8 +20,5 @@
     <PackageReference Include="xunit" Version="$(XunitPackageVersion)" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
 
 </Project>

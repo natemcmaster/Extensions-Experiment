@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/Microsoft.Extensions.ObjectPool/Microsoft.Extensions.ObjectPool.csproj" />
+    <ProjectReference Include="..\src\Microsoft.Extensions.ObjectPool.csproj" />
   </ItemGroup>
 
 </Project>

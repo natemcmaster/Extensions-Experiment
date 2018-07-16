@@ -3,8 +3,9 @@
   <PropertyGroup>
     <Description>Default implementation of dependency injection for Microsoft.Extensions.DependencyInjection.</Description>
     <TargetFrameworks>netcoreapp2.0;net461;netstandard2.0</TargetFrameworks>
-    <AssemblyName>Microsoft.Extensions.DependencyInjection</AssemblyName>
-    <RootNamespace>Microsoft.Extensions.DependencyInjection</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageTags>dependencyinjection;di</PackageTags>
+    <DefineConstants>$(DefineConstants);ActivatorUtilities_In_DependencyInjection</DefineConstants>
 
     <ILEmitBackend Condition="$(TargetFramework) != 'netstandard2.0'">True</ILEmitBackend>
     <DefineConstants Condition="'$(ILEmitBackend)' == 'True'">$(DefineConstants);IL_EMIT</DefineConstants>
@@ -14,9 +15,6 @@
     <DefineConstants Condition="'$(ILEmitBackendSaveAssemblies)' == 'True'">$(DefineConstants);SAVE_ASSEMBLIES</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DI.Abstractions\DI.Abstractions.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="ServiceLookup\ILEmit\**\*.cs" />
@@ -24,10 +22,9 @@
     <Compile Condition="'$(ILEmitBackend)' == 'True'" Include="ServiceLookup\ILEmit\*.cs" />
 
     <Compile Include="..\..\shared\Microsoft.Extensions.ParameterDefaultValue.Sources\*.cs" />
+    <Compile Include="..\..\shared\Microsoft.Extensions.TypeNameHelper.Sources\*.cs" />
+    <Compile Include="..\..\shared\Microsoft.Extensions.ActivatorUtilities.Sources\*.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.TypeNameHelper.Sources" PrivateAssets="All" Version="$(MicrosoftExtensionsTypeNameHelperSourcesPackageVersion)" />
-  </ItemGroup>
 
 </Project>
