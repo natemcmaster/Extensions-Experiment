@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>$(StandardTestTfms)</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\shared\Microsoft.Extensions.CommandLineUtils.Sources\**\*.cs" />
+  </ItemGroup>
+
+</Project>

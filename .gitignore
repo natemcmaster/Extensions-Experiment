@@ -1,0 +1,9 @@
+[Oo]bj/
+[Bb]in/
+artifacts/
+*.user
+*.suo
+*.cache
+*.docstates
+*DS_Store
+.vs/
