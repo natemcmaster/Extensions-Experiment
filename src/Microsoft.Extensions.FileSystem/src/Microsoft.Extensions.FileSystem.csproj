@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageTags>files;filesystem</PackageTags>
+    <Description>Abstractions of files and directories.
+
+Commonly used types:
+Microsoft.Extensions.FileProviders.IDirectoryContents
+Microsoft.Extensions.FileProviders.IFileInfo
+Microsoft.Extensions.FileProviders.IFileProvider
+    </Description>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\shared\EmptyDisposable.cs" />
+    <Compile Include="..\..\shared\Microsoft.Extensions.HashCodeCombiner.Sources\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Microsoft.Extensions.Primitives\src\Microsoft.Extensions.Primitives.csproj" />
+  </ItemGroup>
+
+</Project>

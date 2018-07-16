@@ -9,12 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\shared\**\*.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\FS.Abstractions\FS.Abstractions.csproj" />
-    <ProjectReference Include="..\FS.Globbing\FS.Globbing.csproj" />
+    <ProjectReference Include="..\..\Microsoft.Extensions.FileSystem\src\Microsoft.Extensions.FileSystem.csproj" />
   </ItemGroup>
 
 </Project>
