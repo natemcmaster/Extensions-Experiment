@@ -24,6 +24,304 @@ namespace Microsoft.Extensions.Configuration
         internal static string FormatError_NoSources()
             => GetString("Error_NoSources");
 
+        /// <summary>
+        /// File path must be a non-empty string.
+        /// </summary>
+        internal static string Error_InvalidFilePath
+        {
+            get => GetString("Error_InvalidFilePath");
+        }
+
+        /// <summary>
+        /// File path must be a non-empty string.
+        /// </summary>
+        internal static string FormatError_InvalidFilePath()
+            => GetString("Error_InvalidFilePath");
+
+        /// <summary>
+        /// A duplicate key '{0}' was found.
+        /// </summary>
+        internal static string Error_KeyIsDuplicated
+        {
+            get => GetString("Error_KeyIsDuplicated");
+        }
+
+        /// <summary>
+        /// A duplicate key '{0}' was found.
+        /// </summary>
+        internal static string FormatError_KeyIsDuplicated(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_KeyIsDuplicated"), p0);
+
+        /// <summary>
+        /// XML namespaces are not supported.{0}
+        /// </summary>
+        internal static string Error_NamespaceIsNotSupported
+        {
+            get => GetString("Error_NamespaceIsNotSupported");
+        }
+
+        /// <summary>
+        /// XML namespaces are not supported.{0}
+        /// </summary>
+        internal static string FormatError_NamespaceIsNotSupported(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_NamespaceIsNotSupported"), p0);
+
+        /// <summary>
+        /// Unsupported node type '{0}' was found.{1}
+        /// </summary>
+        internal static string Error_UnsupportedNodeType
+        {
+            get => GetString("Error_UnsupportedNodeType");
+        }
+
+        /// <summary>
+        /// Unsupported node type '{0}' was found.{1}
+        /// </summary>
+        internal static string FormatError_UnsupportedNodeType(object p0, object p1)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_UnsupportedNodeType"), p0, p1);
+
+        /// <summary>
+        ///  Line {0}, position {1}.
+        /// </summary>
+        internal static string Msg_LineInfo
+        {
+            get => GetString("Msg_LineInfo");
+        }
+
+        /// <summary>
+        ///  Line {0}, position {1}.
+        /// </summary>
+        internal static string FormatMsg_LineInfo(object p0, object p1)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Msg_LineInfo"), p0, p1);
+
+        /// <summary>
+        /// Cannot create instance of type '{0}' because it is either abstract or an interface.
+        /// </summary>
+        internal static string Error_CannotActivateAbstractOrInterface
+        {
+            get => GetString("Error_CannotActivateAbstractOrInterface");
+        }
+
+        /// <summary>
+        /// Cannot create instance of type '{0}' because it is either abstract or an interface.
+        /// </summary>
+        internal static string FormatError_CannotActivateAbstractOrInterface(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_CannotActivateAbstractOrInterface"), p0);
+
+        /// <summary>
+        /// Failed to convert '{0}' to type '{1}'.
+        /// </summary>
+        internal static string Error_FailedBinding
+        {
+            get => GetString("Error_FailedBinding");
+        }
+
+        /// <summary>
+        /// Failed to convert '{0}' to type '{1}'.
+        /// </summary>
+        internal static string FormatError_FailedBinding(object p0, object p1)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_FailedBinding"), p0, p1);
+
+        /// <summary>
+        /// Failed to create instance of type '{0}'.
+        /// </summary>
+        internal static string Error_FailedToActivate
+        {
+            get => GetString("Error_FailedToActivate");
+        }
+
+        /// <summary>
+        /// Failed to create instance of type '{0}'.
+        /// </summary>
+        internal static string FormatError_FailedToActivate(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_FailedToActivate"), p0);
+
+        /// <summary>
+        /// Cannot create instance of type '{0}' because it is missing a public parameterless constructor.
+        /// </summary>
+        internal static string Error_MissingParameterlessConstructor
+        {
+            get => GetString("Error_MissingParameterlessConstructor");
+        }
+
+        /// <summary>
+        /// Cannot create instance of type '{0}' because it is missing a public parameterless constructor.
+        /// </summary>
+        internal static string FormatError_MissingParameterlessConstructor(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_MissingParameterlessConstructor"), p0);
+
+        /// <summary>
+        /// Cannot create instance of type '{0}' because multidimensional arrays are not supported.
+        /// </summary>
+        internal static string Error_UnsupportedMultidimensionalArray
+        {
+            get => GetString("Error_UnsupportedMultidimensionalArray");
+        }
+
+        /// <summary>
+        /// Cannot create instance of type '{0}' because multidimensional arrays are not supported.
+        /// </summary>
+        internal static string FormatError_UnsupportedMultidimensionalArray(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_UnsupportedMultidimensionalArray"), p0);
+
+        /// <summary>
+        /// Keys in switch mappings are case-insensitive. A duplicated key '{0}' was found.
+        /// </summary>
+        internal static string Error_DuplicatedKeyInSwitchMappings
+        {
+            get => GetString("Error_DuplicatedKeyInSwitchMappings");
+        }
+
+        /// <summary>
+        /// Keys in switch mappings are case-insensitive. A duplicated key '{0}' was found.
+        /// </summary>
+        internal static string FormatError_DuplicatedKeyInSwitchMappings(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_DuplicatedKeyInSwitchMappings"), p0);
+
+        /// <summary>
+        /// The switch mappings contain an invalid switch '{0}'.
+        /// </summary>
+        internal static string Error_InvalidSwitchMapping
+        {
+            get => GetString("Error_InvalidSwitchMapping");
+        }
+
+        /// <summary>
+        /// The switch mappings contain an invalid switch '{0}'.
+        /// </summary>
+        internal static string FormatError_InvalidSwitchMapping(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_InvalidSwitchMapping"), p0);
+
+        /// <summary>
+        /// The short switch '{0}' is not defined in the switch mappings.
+        /// </summary>
+        internal static string Error_ShortSwitchNotDefined
+        {
+            get => GetString("Error_ShortSwitchNotDefined");
+        }
+
+        /// <summary>
+        /// The short switch '{0}' is not defined in the switch mappings.
+        /// </summary>
+        internal static string FormatError_ShortSwitchNotDefined(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_ShortSwitchNotDefined"), p0);
+
+        /// <summary>
+        /// The expected physical path was '{0}'.
+        /// </summary>
+        internal static string Error_ExpectedPhysicalPath
+        {
+            get => GetString("Error_ExpectedPhysicalPath");
+        }
+
+        /// <summary>
+        /// The expected physical path was '{0}'.
+        /// </summary>
+        internal static string FormatError_ExpectedPhysicalPath(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_ExpectedPhysicalPath"), p0);
+
+        /// <summary>
+        /// The configuration file '{0}' was not found and is not optional.
+        /// </summary>
+        internal static string Error_FileNotFound
+        {
+            get => GetString("Error_FileNotFound");
+        }
+
+        /// <summary>
+        /// The configuration file '{0}' was not found and is not optional.
+        /// </summary>
+        internal static string FormatError_FileNotFound(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_FileNotFound"), p0);
+
+        /// <summary>
+        /// Unrecognized line format: '{0}'.
+        /// </summary>
+        internal static string Error_UnrecognizedLineFormat
+        {
+            get => GetString("Error_UnrecognizedLineFormat");
+        }
+
+        /// <summary>
+        /// Unrecognized line format: '{0}'.
+        /// </summary>
+        internal static string FormatError_UnrecognizedLineFormat(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_UnrecognizedLineFormat"), p0);
+
+        /// <summary>
+        /// Could not parse the JSON file. Error on line number '{0}': '{1}'.
+        /// </summary>
+        internal static string Error_JSONParseError
+        {
+            get => GetString("Error_JSONParseError");
+        }
+
+        /// <summary>
+        /// Could not parse the JSON file. Error on line number '{0}': '{1}'.
+        /// </summary>
+        internal static string FormatError_JSONParseError(object p0, object p1)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_JSONParseError"), p0, p1);
+
+        /// <summary>
+        /// Unsupported JSON token '{0}' was found. Path '{1}', line {2} position {3}.
+        /// </summary>
+        internal static string Error_UnsupportedJSONToken
+        {
+            get => GetString("Error_UnsupportedJSONToken");
+        }
+
+        /// <summary>
+        /// Unsupported JSON token '{0}' was found. Path '{1}', line {2} position {3}.
+        /// </summary>
+        internal static string FormatError_UnsupportedJSONToken(object p0, object p1, object p2, object p3)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_UnsupportedJSONToken"), p0, p1, p2, p3);
+
+        /// <summary>
+        /// Value cannot be null or an empty string.
+        /// </summary>
+        internal static string Common_StringNullOrEmpty
+        {
+            get => GetString("Common_StringNullOrEmpty");
+        }
+
+        /// <summary>
+        /// Value cannot be null or an empty string.
+        /// </summary>
+        internal static string FormatCommon_StringNullOrEmpty()
+            => GetString("Common_StringNullOrEmpty");
+
+        /// <summary>
+        /// Invalid character '{0}' found in the user secrets ID at index '{1}'.
+        /// </summary>
+        internal static string Error_Invalid_Character_In_UserSecrets_Id
+        {
+            get => GetString("Error_Invalid_Character_In_UserSecrets_Id");
+        }
+
+        /// <summary>
+        /// Invalid character '{0}' found in the user secrets ID at index '{1}'.
+        /// </summary>
+        internal static string FormatError_Invalid_Character_In_UserSecrets_Id(object p0, object p1)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_Invalid_Character_In_UserSecrets_Id"), p0, p1);
+
+        /// <summary>
+        /// Could not find 'UserSecretsIdAttribute' on assembly '{0}'.
+        /// Check that the project for '{0}' has set the 'UserSecretsId' build property.
+        /// If the 'UserSecretsId' property is already set then add a reference to the Microsoft.Extensions.Configuration.UserSecrets package.
+        /// </summary>
+        internal static string Error_Missing_UserSecretsIdAttribute
+        {
+            get => GetString("Error_Missing_UserSecretsIdAttribute");
+        }
+
+        /// <summary>
+        /// Could not find 'UserSecretsIdAttribute' on assembly '{0}'.
+        /// Check that the project for '{0}' has set the 'UserSecretsId' build property.
+        /// If the 'UserSecretsId' property is already set then add a reference to the Microsoft.Extensions.Configuration.UserSecrets package.
+        /// </summary>
+        internal static string FormatError_Missing_UserSecretsIdAttribute(object p0)
+            => string.Format(CultureInfo.CurrentCulture, GetString("Error_Missing_UserSecretsIdAttribute"), p0);
+
         private static string GetString(string name, params string[] formatterNames)
         {
             var value = _resourceManager.GetString(name);
