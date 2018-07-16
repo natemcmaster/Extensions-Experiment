@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.FileProviders.Embedded.Tests
 {
     public class EmbeddedFileProviderTests
     {
-        private static readonly string Namespace = typeof(EmbeddedFileProviderTests).Namespace;
+        private static readonly string Namespace = typeof(EmbeddedFileProviderTests).Assembly.GetName().Name;
 
         [Fact]
         public void ConstructorWithNullAssemblyThrowsArgumentException()
