@@ -9,14 +9,22 @@ namespace Microsoft.Extensions.Internal
     {
         public TestClock()
         {
-            UtcNow = new DateTime(2013, 6, 15, 12, 34, 56, 789);
+            // Examples:
+            // DateTime.Now:                6/29/2015 1:20:40 PM
+            // DateTime.UtcNow:             6/29/2015 8:20:40 PM
+            // DateTimeOffset.Now:          6/29/2015 1:20:40 PM - 07:00
+            // DateTimeOffset.UtcNow:       6/29/2015 8:20:40 PM + 00:00
+            // DateTimeOffset.UtcDateTime:  6/29/2015 8:20:40 PM
+            UtcNow = new DateTimeOffset(2013, 1, 1, 1, 0, 0, offset: TimeSpan.Zero);
         }
 
-        public DateTimeOffset UtcNow { get; set; }
+        public DateTimeOffset UtcNow { get; private set; }
 
-        public void Add(TimeSpan timeSpan)
+        public TestClock Add(TimeSpan timeSpan)
         {
-            UtcNow = UtcNow + timeSpan;
+            UtcNow = UtcNow.Add(timeSpan);
+
+            return this;
         }
     }
 }
