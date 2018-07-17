@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.Logging
     /// <summary>
     /// Extension methods for setting up logging services in an <see cref="ILoggingBuilder" />.
     /// </summary>
-    public static class LoggingBuilderExtensions
+    public static partial class LoggingBuilderExtensions
     {
         /// <summary>
         /// Configures <see cref="LoggerFilterOptions" /> from an instance of <see cref="IConfiguration" />.
