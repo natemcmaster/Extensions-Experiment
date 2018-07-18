@@ -14,8 +14,17 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>7.2</LangVersion>
     <DefaultProjectTypeGuid>FAE04EC0-301F-11D3-BF4B-00C04F79EFBC</DefaultProjectTypeGuid>
-    
+
     <StandardTestTfms>netcoreapp2.1;net461</StandardTestTfms>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectSubPath>$([System.IO.Path]::GetFileName($(MSBuildProjectDirectory)))\$(MSBuildProjectName)</ProjectSubPath>
+    <BaseIntermediateOutputPath>$(RepositoryRoot)artifacts\$(Configuration)\obj\$(ProjectSubPath)\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(RepositoryRoot)artifacts\$(Configuration)\bin\$(ProjectSubPath)\</BaseOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(TargetFramework)\</IntermediateOutputPath>
+    <IntermediateOutputPath Condition="'$(RuntimeIdentifier)' != ''">$(IntermediateOutputPath)\$(RuntimeIdentifier)\</IntermediateOutputPath>
+    <OutputPath>$(BaseOutputPath)\$(TargetFramework)\</OutputPath>
+    <OutputPath Condition="'$(RuntimeIdentifier)' != ''">$(OutputPath)\$(RuntimeIdentifier)\</OutputPath>
   </PropertyGroup>
+
 
 </Project>

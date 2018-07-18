@@ -4,6 +4,7 @@
   <PropertyGroup>
     <IsRefAssemblyProject Condition="$(MSBuildProjectDirectory.EndsWith('ref'))">true</IsRefAssemblyProject>
     <GenerateRefApi Condition="'$(GenerateRefApi)' == '' AND $(MSBuildProjectDirectory.EndsWith('src'))">true</GenerateRefApi>
+    <ProduceReferenceAssembly Condition="'$(IsRefAssemblyProject)' == 'true'">false</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(GenerateRefApi)' == 'true' AND '$(TargetFramework)' != '' ">
