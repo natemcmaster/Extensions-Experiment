@@ -1,0 +1,30 @@
+<Project>
+  <Import Project="..\Directory.Build.targets" />
+
+  <PropertyGroup>
+    <IsRefAssemblyProject Condition="$(MSBuildProjectDirectory.EndsWith('ref'))">true</IsRefAssemblyProject>
+    <GenerateRefApi Condition="'$(GenerateRefApi)' == '' AND $(MSBuildProjectDirectory.EndsWith('src'))">true</GenerateRefApi>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(GenerateRefApi)' == 'true' AND '$(TargetFramework)' != '' ">
+    <GenAPITargetDir>$(MSBuildProjectDirectory)\..\ref\</GenAPITargetDir>
+    <GenAPITargetPath>$(GenAPITargetDir)$(AssemblyName).$(TargetFramework).cs</GenAPITargetPath>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(GenerateRefApi)' == 'true' ">
+    <PackageReference Include="Microsoft.DotNet.BuildTools.GenAPI" Version="2.2.0-preview1-03013-03" PrivateAssets="All" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(IsRefAssemblyProject)' == 'true'">
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsRefAssemblyProject)' == 'true'">
+    <Compile Include="$(AssemblyName).$(TargetFramework).cs" />
+  </ItemGroup>
+
+  <Target Name="MakeGenAPITargetDir" BeforeTargets="GenerateReferenceAssemblySource">
+    <MakeDir Directories="$(GenAPITargetDir)" />
+  </Target>
+
+</Project>

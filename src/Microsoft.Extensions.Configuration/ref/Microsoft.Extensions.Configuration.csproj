@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Microsoft.Extensions.Primitives\ref\Microsoft.Extensions.Primitives.csproj" />
+    <ProjectReference Include="..\..\Microsoft.Extensions.FileSystem\ref\Microsoft.Extensions.FileSystem.csproj" />
+  </ItemGroup>
+
+</Project>

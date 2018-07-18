@@ -7,3 +7,4 @@ artifacts/
 *.docstates
 *DS_Store
 .vs/
+*.binlog
