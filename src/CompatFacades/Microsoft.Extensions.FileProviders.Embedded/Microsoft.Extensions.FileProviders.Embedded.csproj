@@ -1,15 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Microsoft.Extensions.FileProviders</RootNamespace>
-    <AssemblyName>Microsoft.Extensions.FileProviders.Embedded</AssemblyName>
-    <Description>File provider for files in embedded resources for Microsoft.Extensions.FileProviders.</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <NuspecFile>$(MSBuildProjectName).nuspec</NuspecFile>
+    <ReplacementPackage>Microsoft.Extensions.FileSystem</ReplacementPackage>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Microsoft.Extensions.FileSystem\src\Microsoft.Extensions.FileSystem.csproj" />
-  </ItemGroup>
 
 </Project>

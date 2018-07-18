@@ -1,14 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>File system globbing to find files matching a specified pattern.</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <NoWarn>$(NoWarn);CS1591</NoWarn>
-    <PackageTags>$(PackageTags);glob;globbing</PackageTags>
+    <ReplacementPackage>Microsoft.Extensions.FileSystem</ReplacementPackage>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Microsoft.Extensions.FileSystem\src\Microsoft.Extensions.FileSystem.csproj" />
-  </ItemGroup>
 
 </Project>

@@ -1,13 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Environment variables configuration provider implementation for Microsoft.Extensions.Configuration.</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageTags>$(PackageTags);envvar;environmentvariable</PackageTags>
+    <ReplacementPackage>Microsoft.Extensions.Configuration</ReplacementPackage>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Microsoft.Extensions.Configuration\src\Microsoft.Extensions.Configuration.csproj" />
-  </ItemGroup>
 
 </Project>

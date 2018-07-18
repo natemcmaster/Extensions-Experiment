@@ -2,10 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ReplacementPackage>Microsoft.Extensions.Caching</ReplacementPackage>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Microsoft.Extensions.Caching\src\Microsoft.Extensions.Caching.csproj" />
-  </ItemGroup>
 
 </Project>

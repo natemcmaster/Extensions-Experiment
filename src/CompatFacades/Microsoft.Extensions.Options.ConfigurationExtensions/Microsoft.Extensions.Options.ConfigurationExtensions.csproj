@@ -2,10 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ReplacementPackage>Microsoft.Extensions.Logging</ReplacementPackage>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Microsoft.Extensions.Options\src\Microsoft.Extensions.Options.csproj" />
-  </ItemGroup>
 
 </Project>

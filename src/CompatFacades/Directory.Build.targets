@@ -1,0 +1,12 @@
+<Project>
+  <Import Project="..\Directory.Build.targets" />
+
+  <PropertyGroup>
+    <PackageDescription>OBSOLETE. This package has been made obsolete. The recommended replacement is $(ReplacementPackage).</PackageDescription>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)..\$(ReplacementPackage)\ref\$(ReplacementPackage).csproj" />
+  </ItemGroup>
+
+</Project>
