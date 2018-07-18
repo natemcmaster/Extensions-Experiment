@@ -1,0 +1,10 @@
+<Project>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.props))\Directory.Build.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\ref\Microsoft.Extensions.Configuration.csproj" />
+    <ProjectReference Include="..\src\Microsoft.Extensions.Configuration.csproj" />
+  </ItemGroup>
+
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
+</Project>

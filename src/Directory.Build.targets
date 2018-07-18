@@ -1,15 +1,19 @@
 <Project>
-  <Import Project="..\Directory.Build.targets" />
 
   <PropertyGroup>
-    <IsRefAssemblyProject Condition="$(MSBuildProjectDirectory.EndsWith('ref'))">true</IsRefAssemblyProject>
-    <IsRuntimeAssemblyProject Condition="$(MSBuildProjectDirectory.EndsWith('src'))">true</IsRuntimeAssemblyProject>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPkgProject Condition=" '$(MSBuildProjectExtension)' == '.pkgproj'">true</IsPkgProject>
+    <IsReferenceAssembly Condition="$(MSBuildProjectDirectory.EndsWith('ref'))">true</IsReferenceAssembly>
     <IsTestProject Condition="'$(IsTestProject)' == '' AND ( $(MSBuildProjectName.EndsWith('Tests')) OR $(MSBuildProjectName.EndsWith('Test')) )">true</IsTestProject>
     <IsTestProject Condition="$(MSBuildProjectDirectory.EndsWith('test'))">true</IsTestProject>
+    <IsRuntimeAssembly Condition=" '$(IsRuntimeAssembly)' == '' AND '$(IsReferenceAssembly)' != 'true' AND '$(IsTestProject)' != 'true' ">true</IsRuntimeAssembly >
   </PropertyGroup>
 
   <Choose>
-    <When Condition="'$(IsRefAssemblyProject)' == 'true'">
+    <When Condition="'$(IsReferenceAssembly)' == 'true'">
       <PropertyGroup>
         <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
@@ -20,7 +24,7 @@
       </ItemGroup>
     </When>
 
-    <When Condition="'$(IsRuntimeAssemblyProject)' == 'true'">
+    <When Condition="'$(IsRuntimeAssembly)' == 'true'">
       <PropertyGroup>
         <GenerateRefApi Condition="'$(GenerateRefApi)' == ''">true</GenerateRefApi>
       </PropertyGroup>
@@ -40,5 +44,15 @@
       </ItemGroup>
     </When>
   </Choose>
+
+  <ItemDefinitionGroup>
+    <TargetPathWithTargetPlatformMoniker>
+      <IsReferenceAssembly>$(IsReferenceAssembly)</IsReferenceAssembly>
+      <IsRuntimeAssembly>$(IsRuntimeAssembly)</IsRuntimeAssembly>
+      <TargetFramework>$(TargetFramework)</TargetFramework>
+    </TargetPathWithTargetPlatformMoniker>
+  </ItemDefinitionGroup>
+
+  <Import Project="..\Directory.Build.targets" />
 
 </Project>

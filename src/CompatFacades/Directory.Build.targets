@@ -1,12 +1,50 @@
 <Project>
-  <Import Project="..\Directory.Build.targets" />
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
 
   <PropertyGroup>
     <PackageDescription>OBSOLETE. This package has been made obsolete. The recommended replacement is $(ReplacementPackage).</PackageDescription>
+    <PackageId>$([MSBuild]::ValueOrDefault('$(PackageId)', '$(MSBuildProjectName)'))</PackageId>
+    <WarningTargetsFile>$(PackageId).targets</WarningTargetsFile>
+    <WarningTargetsOutputPath>$(IntermediateOutputPath)$(WarningTargetsFile)</WarningTargetsOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="$(MSBuildThisFileDirectory)..\$(ReplacementPackage)\ref\$(ReplacementPackage).csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="$(WarningTargetsOutputPath)" PackagePath="build/$(PackageId).targets" />
+  </ItemGroup>
+
+  <Target Name="GenerateWarningTargets"
+          Inputs="$(MSBuildAllProjects)"
+          Outputs="$(WarningTargetsOutputPath)"
+          Condition="'$(TargetFrameworks)' == '' OR '$(TargetFramework)' == ''"
+          BeforeTargets="Build">
+    <PropertyGroup>
+      <!-- %25 = % in ascii. This is required to escape the batching which should run at target evaluation time, not build time. -->
+      <WarningTargetsContent><![CDATA[
+<Project>
+  <ItemGroup>
+    <ObsoletePackageReference Include="$(PackageId)" Replacement="$(ReplacementPackage)" />
+  </ItemGroup>
+
+  <Target Name="WarnAboutObsoletePackageReference" BeforeTargets="_CheckForInvalidConfigurationAndPlatform;CollectPackageReference">
+    <Warning Text="The package %25(ObsoletePackageReference.Identity) is obsolete. The recommended replacement is %25(ObsoletePackageReference.Replacement)." Condition=" '%25(ObsoletePackageReference.Identity)' != '' " />
+  </Target>
+</Project>
+]]>
+      </WarningTargetsContent>
+    </PropertyGroup>
+    <WriteLinesToFile
+      File="$(WarningTargetsOutputPath)"
+      Lines="$([MSBuild]::Escape($(WarningTargetsContent)))"
+      Overwrite="true" />
+  </Target>
+
+  <Import Project="..\Directory.Build.targets" />
 
 </Project>

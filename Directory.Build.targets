@@ -1,11 +1,59 @@
 <Project>
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+
   <PropertyGroup>
     <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">$(MicrosoftNETCoreApp20PackageVersion)</RuntimeFrameworkVersion>
     <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">$(MicrosoftNETCoreApp21PackageVersion)</RuntimeFrameworkVersion>
     <RuntimeFrameworkVersion Condition=" '$(TargetFramework)' == 'netcoreapp2.2' ">$(MicrosoftNETCoreApp22PackageVersion)</RuntimeFrameworkVersion>
     <NETStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard2.0' ">$(NETStandardLibrary20PackageVersion)</NETStandardImplicitPackageVersion>
-    <!-- aspnet/BuildTools#662 Don't police what version of NetCoreApp we use -->
-    <NETCoreAppMaximumVersion>99.9</NETCoreAppMaximumVersion>
   </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(IsStable)' != 'true'" >
+    <IncludePreReleaseLabelInPackageVersion>true</IncludePreReleaseLabelInPackageVersion>
+    <IncludeBuildNumberInPackageVersion>true</IncludeBuildNumberInPackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(BlockStable)' == 'true'">
+    <!--
+      If BlockStable is set to true then always include the label and build number in the package version.
+      This needs to be set before we import packaging.targets which comes in the Build.Common.targets.
+    -->
+    <IncludePreReleaseLabelInPackageVersion>true</IncludePreReleaseLabelInPackageVersion>
+    <IncludeBuildNumberInPackageVersion>true</IncludeBuildNumberInPackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GetPackageVersionDependsOn>$(GetPackageVersionDependsOn);CalculatePackageVersion</GetPackageVersionDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CalculatePackageVersion">
+    <PropertyGroup  Condition="'$(IsStable)' != 'true'">
+      <PackageVersion Condition="'$(IncludePreReleaseLabelInPackageVersion)' == 'true'">$(PackageVersion)-$(VersionPrereleaseLabel)</PackageVersion>
+      <PackageVersion Condition="'$(IncludeBuildNumberInPackageVersion)' == 'true'">$(PackageVersion)-$(BuildNumber)</PackageVersion>
+    </PropertyGroup>
+
+    <!-- DO NOT ship this packages as stable -->
+    <Error Condition="!$(PackageVersion.Contains('-'))" Text="Package $(Id) should not be built stable" />
+  </Target>
+
+  <Target Name="_SetVersions" BeforeTargets="GetAssemblyVersion">
+    <Error Text="Missing required property: AssemblyVersion" Condition=" '$(AssemblyVersion)' == '' "/>
+
+    <PropertyGroup>
+      <Version Condition=" '$(Version)' == '' ">$(PackageVersion)</Version>
+      <InfoVersion>$(Version)-$(VersionPrereleaseLabel)-$(BuildNumber)</InfoVersion>
+    </PropertyGroup>
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+        <_Parameter1>PackageVersion</_Parameter1>
+        <_Parameter2>$(PackageVersion)</_Parameter2>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
+
+  <Import Project="eng\targets\Packaging.targets" Condition="'$(MSBuildProjectExtension)' == '.pkgproj'" />
 
 </Project>

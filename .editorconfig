@@ -14,7 +14,7 @@ indent_size = 4
 dotnet_sort_system_directives_first = true:warning
 
 # Xml files
-[*.{csproj,config,props,targets,ruleset,config,resx,xml}]
+[*.{csproj,pkgproj,config,props,targets,ruleset,config,resx,xml}]
 indent_size = 2
 
 [*.{json, yml}]

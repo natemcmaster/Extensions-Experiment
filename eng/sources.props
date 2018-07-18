@@ -1,6 +1,10 @@
 <Project>
   <Import Project="$(DotNetRestoreSourcePropsPath)" Condition="'$(DotNetRestoreSourcePropsPath)' != ''"/>
 
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+
   <PropertyGroup Label="RestoreSources">
     <RestoreSources>$(DotNetRestoreSources)</RestoreSources>
     <RestoreSources Condition="'$(DotNetBuildOffline)' != 'true' AND '$(AspNetUniverseBuildOffline)' != 'true' ">

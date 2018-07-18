@@ -1,9 +1,18 @@
 ﻿<Project>
   <Import Project="eng\dependencies.props" />
   <Import Project="eng\sources.props" />
+  <Import Project="eng\targets\Packaging.props" Condition="'$(MSBuildProjectExtension)' == '.pkgproj'" />
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
 
   <PropertyGroup>
     <Product>Microsoft .NET Extensions</Product>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <VersionPrereleaseLabel>preview1</VersionPrereleaseLabel>
+    <BuildNumber Condition="'$(BuildNumber)' == '' ">t000</BuildNumber>
     <RepositoryUrl>https://github.com/aspnet/Extensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
@@ -14,6 +23,9 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <LangVersion>7.2</LangVersion>
     <DefaultProjectTypeGuid>FAE04EC0-301F-11D3-BF4B-00C04F79EFBC</DefaultProjectTypeGuid>
+    <!-- Disable default pack targets -->
+    <IsPackable>false</IsPackable>
+    <PackageOutputPath>$(RepositoryRoot)artifacts\$(Configuration)\packages\</PackageOutputPath>
 
     <StandardTestTfms>netcoreapp2.1;net461</StandardTestTfms>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -26,7 +38,9 @@
     <IntermediateOutputPath Condition="'$(PlatformName)' != 'AnyCPU'">$(BaseIntermediateOutputPath)$(PlatformName)\</IntermediateOutputPath>
     <OutputPath>$(BaseOutputPath)</OutputPath>
     <OutputPath Condition="'$(PlatformName)' != 'AnyCPU'">$(OutputPath)$(PlatformName)\</OutputPath>
-  </PropertyGroup>
 
+    <!-- aspnet/BuildTools#662 Don't police what version of NetCoreApp we use -->
+    <NETCoreAppMaximumVersion>99.9</NETCoreAppMaximumVersion>
+  </PropertyGroup>
 
 </Project>

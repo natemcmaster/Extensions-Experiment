@@ -1,0 +1,40 @@
+<Project DefaultTargets="Build">
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ProjectReference>
+      <OutputItemType>_ProjectAssembly</OutputItemType>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GatherProjectRefsForPackageContent</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="ResolveProjectReferences">
+    <MSBuild Projects="@(ProjectReference)"
+             Targets="GetTargetPath">
+      <Output TaskParameter="TargetOutputs" ItemName="%(OutputItemType)" />
+    </MSBuild>
+  </Target>
+
+  <Target Name="GatherProjectRefsForPackageContent" DependsOnTargets="ResolveProjectReferences">
+    <ItemGroup>
+      <Content Include="%(_ProjectAssembly.Identity)" Condition=" '%(_ProjectAssembly.Identity)' != '' ">
+        <PackagePath Condition="'%(_ProjectAssembly.IsReferenceAssembly)' == 'true' ">ref/%(_ProjectAssembly.TargetFramework)/%(_ProjectAssembly.FileName)%(_ProjectAssembly.Extension)</PackagePath>
+        <PackagePath Condition="'%(_ProjectAssembly.IsReferenceAssembly)' != 'true' ">lib/%(_ProjectAssembly.TargetFramework)/%(_ProjectAssembly.FileName)%(_ProjectAssembly.Extension)</PackagePath>
+      </Content>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="Build" />
+
+  <Target Name="Pack" DependsOnTargets="GatherProjectRefsForPackageContent">
+    <MakeDir Directories="$(OutputPath)" />
+    <Copy SourceFiles="@(Content)" DestinationFiles="@(Content->'$(OutputPath)%(PackagePath)')" />
+  </Target>
+
+</Project>

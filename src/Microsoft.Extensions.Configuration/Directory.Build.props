@@ -1,0 +1,23 @@
+<Project>
+  <Import Project="..\Directory.Build.props" />
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageVersion>3.0.0</PackageVersion>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+
+    <PackageDescription>Provides API for storing and reading configuration from various mechanisms, such as different file formats, environment variables, and more.
+
+Commonly used types:
+Microsoft.Extensions.Configuration.ConfigurationBuilder
+Microsoft.Extensions.Configuration.IConfiguration
+Microsoft.Extensions.Configuration.IConfigurationProvider
+Microsoft.Extensions.Configuration.IConfigurationRoot
+Microsoft.Extensions.Configuration.IConfigurationSection
+    </PackageDescription>
+  </PropertyGroup>
+
+</Project>
